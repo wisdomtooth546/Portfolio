@@ -1,0 +1,28 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Facial Emotion Recognition</title>
+    <style>
+      img {
+border: 5px white solid;
+}
+    </style>
+     <link rel="stylesheet" href="fer/dist/index.css">
+  </head>
+  <body>
+    <div class="c-hero qa-hero">
+      <div class="o-vertical-spacing o-vertical-spacing--xl c-hero__inner">
+        <div class="c-hero__head">
+          <h1 class="c-h1">Facial Emotion Recognition</h1>
+          <h6>(Requires camera access)</h6>
+          
+        </div>
+        <div>
+          <div >
+            <img  src="{{ url_for('video') }}">
+          </div>
+        </div>
+      </div>
+    </div>
