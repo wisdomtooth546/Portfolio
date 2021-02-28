@@ -5,7 +5,7 @@ const constraints = {
         height: {min: 480, ideal: 720, max: 1080}
     }
 };
- 
+
 navigator.mediaDevices.getUserMedia(constraints)
     .then(stream => {
         document.getElementById("myVideo").srcObject = stream;

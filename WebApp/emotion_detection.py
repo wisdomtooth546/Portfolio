@@ -3,7 +3,6 @@ import cv2, json
 import numpy as np
 
 model = tf.keras.models.load_model("G:\Portfolio\Website-Portfolio\Classic-Theme\WebApp\essentials\ResNet-50.h5")
-camera = cv2.VideoCapture(0)
 cascade_file = 'G:\Portfolio\Website-Portfolio\Classic-Theme\WebApp\essentials\haarcascade_frontalface_alt2.xml'
 face_Detection = cv2.CascadeClassifier(cascade_file)
 emotion_dict = {0:'Angry', 1:'Disgust', 2:'Fear', 3:'Happy', 4:'Sad', 5:'Surprise', 6:'Neutral'}
@@ -43,14 +42,6 @@ def get_objects(frame):
             
             outputJSON = json.dumps(item, default=default)
             return outputJSON
-            """
-                cv2.rectangle(frame, (x, y), (x + w, y + h),(0,255,0), 2)
-         
-                cv2.putText(frame,  f'{emotion_dict[preds.item()]}',(x, y), 
-                  cv2.FONT_HERSHEY_SIMPLEX , 
-                  fontScale=1, 
-                  color = (255, 255, 0) , 
-                  thickness= 3)
-            """
+            
 
 

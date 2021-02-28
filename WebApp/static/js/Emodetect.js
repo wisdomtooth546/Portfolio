@@ -1,4 +1,4 @@
-const s = document.getElementById('objDetect');
+const s = document.getElementById('EmoDetection');
 const sourceVideo = s.getAttribute("data-source");  //the source video to use
 const uploadWidth = s.getAttribute("data-uploadWidth") || 480; //the width of the upload file
 const mirror = s.getAttribute("data-mirror") || false; //mirror the boundary boxes
