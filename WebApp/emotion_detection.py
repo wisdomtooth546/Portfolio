@@ -2,6 +2,7 @@ import tensorflow as tf
 import cv2, json
 import numpy as np
 
+#'./WebApp/essentials/haarcascade_frontalface_alt2.xml'
 model = tf.keras.models.load_model("G:\Portfolio\Website-Portfolio\Classic-Theme\WebApp\essentials\ResNet-50.h5")
 cascade_file = 'G:\Portfolio\Website-Portfolio\Classic-Theme\WebApp\essentials\haarcascade_frontalface_alt2.xml'
 face_Detection = cv2.CascadeClassifier(cascade_file)
@@ -16,12 +17,12 @@ def default(obj):
     raise TypeError('Unknown type:', type(obj))
 
 def get_objects(frame):
-    
+            frame = cv2.cvtColor(np.asarray(frame), cv2.COLOR_RGB2BGR)
             faces = face_Detection.detectMultiScale(frame,
                                          scaleFactor=1.1,
                                          minNeighbors=5,
                                          minSize=(60, 60),
-                                         flags=cv2.CASCADE_SCALE_IMAGE)
+                                         )
             img = tf.image.resize(frame,(197, 197)) 
             input = tf.expand_dims(img,0)
             input-= 128.8006
@@ -39,7 +40,7 @@ def get_objects(frame):
              item['y'] = y
              item['w'] = w
              item['h'] = h
-            
+            print(faces)
             outputJSON = json.dumps(item, default=default)
             return outputJSON
             

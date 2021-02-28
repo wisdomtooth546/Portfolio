@@ -24,20 +24,18 @@
      <link rel="stylesheet" href="fer/dist/index.css">
   </head>
   <body>
-    <div class="c-hero qa-hero">
-      <div class="o-vertical-spacing o-vertical-spacing--xl c-hero__inner">
-        <div class="c-hero__head">
-          <h1 class="c-h1">Facial Emotion Recognition</h1>
+    <div class="md-col-12">
+       <h1 class="c-h1"></h1>Facial Emotion Recognition</h1></br>
           <h6>(Requires camera access)</h6>
           
-        </div>
+    </div>
+    <div>
         
             <video id="myVideo" autoplay></video>
          
-      </div>
     </div>
     
     <script src= '/js/webrtc.js'></script>
-    <script id='EmoDetection' src= '/js/Emodetect.js' data-source='myVideo' data-mirror="true" data-uploadWidth="720"></script>
+    <script id='EmoDetection' src= '/js/Emodetect.js' data-source='myVideo' data-mirror="false" data-uploadWidth="720"></script>
   </body>
 </html>

@@ -1,7 +1,7 @@
 
-from flask import Flask,Response, render_template
+from flask import Flask, request, Response, render_template
 import emotion_detection
-import cv2, time
+import time
 from PIL import Image
 
 app = Flask(__name__, static_url_path='', static_folder='static')
@@ -21,10 +21,9 @@ def FER():
 def image():
     try:
         image_file = request.files['image']  # get the image
-  
         # finally run the image through tensor flow object detection`
         image_object = Image.open(image_file)
-        objects = object_detection_api.get_objects(image_object)
+        objects = emotion_detection.get_objects(image_object)
         return objects
  
     except Exception as e:
@@ -40,4 +39,4 @@ def after_request(response):
     return response
 
 if __name__ == "__main__":
-    app.run(host = '0.0.0.0', debug=True)
+    app.run(host = '0.0.0.0')

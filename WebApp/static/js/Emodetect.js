@@ -51,7 +51,7 @@ function startObjectDetection() {
     drawCtx.lineWidth = "4";
     drawCtx.strokeStyle = "cyan";
     drawCtx.font = "20px Verdana";
-    drawCtx.fillStyle = "white";
+    drawCtx.fillStyle = "blue";
     imageCtx.drawImage(v, 0, 0, v.videoWidth, v.videoHeight, 0, 0, uploadWidth, uploadWidth * (v.videoHeight / v.videoWidth));
     imageCanvas.toBlob(postFile, 'image/jpeg');
  
@@ -83,24 +83,71 @@ function postFile(file) {
     xhr.send(formdata);
 }
 
-function drawBoxes(objects) {
+function drawBoxes(object) {
  
     //clear the previous drawings
     drawCtx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
- 
+    
     //filter out objects that contain a class_name and then draw boxes and labels on each
-    let x = object.x * drawCanvas.width;
-    let y = object.y * drawCanvas.height;
-    let width = (object.w * drawCanvas.width) + x;
-    let height = (object.h * drawCanvas.height) + y;
+    console.log(object)
+    let x = object.x * drawCanvas.Width ;
+    let y = object.y * drawCanvas.Height;
+    let width = (object.w * drawCanvas.Width) + x;
+    let height = (object.h * drawCanvas.Height) + y;
  
     //flip the x axis if local video is mirrored
     if (mirror){
             x = drawCanvas.width - (x + width)
         }
- 
+        console.log(drawCanvas.width);
     drawCtx.fillText(object.class_name + " - " + Math.round(object.score * 100, 1) + "%", x + 5, y + 20);
     drawCtx.strokeRect(x, y, width, height);
  
     
+}
+function sendImageFromCanvas() {
+ 
+    imageCtx.drawImage(v, 0, 0, v.videoWidth, v.videoHeight, 0, 0, uploadWidth, uploadWidth * (v.videoHeight / v.videoWidth));
+ 
+    let imageChanged = imageChange(imageCtx, imageChangeThreshold);
+    let enoughTime = (new Date() - lastFrameTime) > updateInterval;
+ 
+    if (imageChanged && enoughTime) {
+        imageCanvas.toBlob(postFile, 'image/jpeg');
+        lastFrameTime = new Date();
+    }
+    else {
+        setTimeout(sendImageFromCanvas, updateInterval);
+    }
+}
+
+function imageChange(sourceCtx, changeThreshold) {
+ 
+    let changedPixels = 0;
+    const threshold = changeThreshold * sourceCtx.canvas.width * sourceCtx.canvas.height;   //the number of pixes that change change
+ 
+    let currentFrame = sourceCtx.getImageData(0, 0, sourceCtx.canvas.width, sourceCtx.canvas.height).data;
+ 
+    //handle the first frame
+    if (lastFrameData === null) {
+        lastFrameData = currentFrame;
+        return true;
+    }
+ 
+    //look for the number of pixels that changed
+    for (let i = 0; i < currentFrame.length; i += 4) {
+        let lastPixelValue = lastFrameData[i] + lastFrameData[i + 1] + lastFrameData[i + 2];
+        let currentPixelValue = currentFrame[i] + currentFrame[i + 1] + currentFrame[i + 2];
+ 
+        //see if the change in the current and last pixel is greater than 10; 0 was too sensitive
+        if (Math.abs(lastPixelValue - currentPixelValue) > (10)) {
+            changedPixels++
+        }
+    }
+ 
+    //console.log("current frame hits: " + hits);
+    lastFrameData = currentFrame;
+ 
+    return (changedPixels > threshold);
+ 
 }
