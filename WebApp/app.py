@@ -4,11 +4,6 @@ from flask import Flask,Response, render_template
 import cv2, time
 
 app = Flask(__name__, static_url_path='', static_folder='static')
-model = tf.keras.models.load_model("./WebApp/essentials/ResNet-50.h5")
-camera = cv2.VideoCapture(0)
-cascade_file = './WebApp/essentials/haarcascade_frontalface_alt2.xml'
-face_Detection = cv2.CascadeClassifier(cascade_file)
-emotion_dict = {0:'Angry', 1:'Disgust', 2:'Fear', 3:'Happy', 4:'Sad', 5:'Surprise', 6:'Neutral'}
 
 def gen_frames():  
     tick = time.time()
