@@ -16,12 +16,8 @@ def default(obj):
             return obj.item()
     raise TypeError('Unknown type:', type(obj))
 
-def get_objects():
-    while True:
-        success, frame = camera.read()  # read the camera frame
-        if not success:
-            break
-        else:
+def get_objects(frame):
+    
             faces = face_Detection.detectMultiScale(frame,
                                          scaleFactor=1.1,
                                          minNeighbors=5,

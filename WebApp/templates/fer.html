@@ -5,9 +5,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Facial Emotion Recognition</title>
     <style>
-      img {
-border: 5px white solid;
-}
+      video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        transform: scale(-1,1);
+        -webkit-transform: scale(-1, 1);     /*for Chrome & Opera (& Safari) */
+    }
+    canvas{
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index:1
+    }
+  
     </style>
      <link rel="stylesheet" href="fer/dist/index.css">
   </head>
@@ -21,8 +33,12 @@ border: 5px white solid;
         </div>
         <div>
           <div >
-            <img  src="{{ url_for('video') }}">
+            <video id="myVideo" autoplay></video>
           </div>
         </div>
       </div>
     </div>
+    <script src= '/js/webrtc.js'></script>
+    <script id='EmoDetection' src= '/js/Emodetect.js' data-source='myVideo' data-mirror="true" data-uploadWidth="1280"></script>
+  </body>
+</html>
