@@ -51,9 +51,10 @@ function startObjectDetection() {
     drawCtx.lineWidth = "4";
     drawCtx.strokeStyle = "cyan";
     drawCtx.font = "20px Verdana";
-    drawCtx.fillStyle = "blue";
+    drawCtx.fillStyle = "yellow";
     imageCtx.drawImage(v, 0, 0, v.videoWidth, v.videoHeight, 0, 0, uploadWidth, uploadWidth * (v.videoHeight / v.videoWidth));
     imageCanvas.toBlob(postFile, 'image/jpeg');
+   
  
 }
 
@@ -68,12 +69,13 @@ function postFile(file) {
     xhr.onload = function () {
         if (this.status === 200) {
             let objects = JSON.parse(this.response);
-            //console.log(objects);
- 
+            console.log(objects);
+      
             //draw the boxes
             drawBoxes(objects);
             
             //Send the next image
+            imageCtx.drawImage(v, 0, 0, v.videoWidth, v.videoHeight, 0, 0, uploadWidth, uploadWidth * (v.videoHeight / v.videoWidth));
             imageCanvas.toBlob(postFile, 'image/jpeg');
         }
         else{
@@ -89,22 +91,22 @@ function drawBoxes(object) {
     drawCtx.clearRect(0, 0, drawCanvas.width, drawCanvas.height);
     
     //filter out objects that contain a class_name and then draw boxes and labels on each
-    console.log(object)
-    let x = object.x * drawCanvas.Width ;
-    let y = object.y * drawCanvas.Height;
-    let width = (object.w * drawCanvas.Width) + x;
-    let height = (object.h * drawCanvas.Height) + y;
- 
+    
+    let x = object.x * 640;
+    let y = object.y *640;
+    let width = (object.w * 640) + x;
+    let height = (object.h * 640) + y;
     //flip the x axis if local video is mirrored
     if (mirror){
             x = drawCanvas.width - (x + width)
         }
-        console.log(drawCanvas.width);
+    
     drawCtx.fillText(object.class_name + " - " + Math.round(object.score * 100, 1) + "%", x + 5, y + 20);
     drawCtx.strokeRect(x, y, width, height);
  
     
 }
+
 function sendImageFromCanvas() {
  
     imageCtx.drawImage(v, 0, 0, v.videoWidth, v.videoHeight, 0, 0, uploadWidth, uploadWidth * (v.videoHeight / v.videoWidth));

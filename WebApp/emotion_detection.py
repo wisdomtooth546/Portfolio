@@ -17,11 +17,12 @@ def default(obj):
     raise TypeError('Unknown type:', type(obj))
 
 def get_objects(frame):
+            
             frame = cv2.cvtColor(np.asarray(frame), cv2.COLOR_RGB2BGR)
+            
             faces = face_Detection.detectMultiScale(frame,
-                                         scaleFactor=1.1,
                                          minNeighbors=5,
-                                         minSize=(60, 60),
+                                         minSize=(60, 60)
                                          )
             img = tf.image.resize(frame,(197, 197)) 
             input = tf.expand_dims(img,0)
@@ -36,11 +37,10 @@ def get_objects(frame):
             item['class_name'] = emotion_dict[preds.item()]
             item['score'] = np.max(logit ,1)
             for x,y,w,h in faces:
-             item['x'] = x
-             item['y'] = y
-             item['w'] = w
-             item['h'] = h
-            print(faces)
+             item['x'] = x/640.0
+             item['y'] = y/640.0
+             item['w'] = w/640.0
+             item['h'] = h/640.0
             outputJSON = json.dumps(item, default=default)
             return outputJSON
             
