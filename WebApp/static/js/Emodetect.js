@@ -40,7 +40,7 @@ function startObjectDetection() {
  
     console.log("starting object detection");
  
-    //Set canvas sizes base don input video
+    //Set canvas sizes based on input video
     drawCanvas.width = v.videoWidth;
     drawCanvas.height = v.videoHeight;
  
@@ -92,10 +92,10 @@ function drawBoxes(object) {
     
     //filter out objects that contain a class_name and then draw boxes and labels on each
     
-    let x = object.x * 640;
-    let y = object.y *640;
-    let width = (object.w * 640) + x;
-    let height = (object.h * 640) + y;
+    let x = object.x * drawCanvas.width;
+    let y = object.y * drawCanvas.height;
+    let width = (object.w ) + x;
+    let height = (object.h )+ y;
     //flip the x axis if local video is mirrored
     if (mirror){
             x = drawCanvas.width - (x + width)
