@@ -16,7 +16,8 @@ let imageCanvas = document.createElement('canvas');
 let imageCtx = imageCanvas.getContext("2d");
  
 //create a canvas for drawing object boundaries
-let drawCanvas = document.createElement('canvas');
+const drawCanvas = document.getElementById('myCanvas');
+//let drawCanvas = document.createElement('canvas');
 document.body.appendChild(drawCanvas);
 let drawCtx = drawCanvas.getContext("2d");
 
@@ -52,7 +53,7 @@ function startObjectDetection() {
     drawCtx.strokeStyle = "cyan";
     drawCtx.font = "20px Verdana";
     drawCtx.fillStyle = "yellow";
-    imageCtx.drawImage(v, 0, 0, v.videoWidth, v.videoHeight, 0, 0, uploadWidth, uploadWidth * (v.videoHeight / v.videoWidth));
+    imageCtx.drawImage(v, 0, 0, uploadWidth * (v.videoHeight / v.videoWidth), uploadWidth * (v.videoHeight / v.videoWidth));
     imageCanvas.toBlob(postFile, 'image/jpeg');
    
  
@@ -73,9 +74,9 @@ function postFile(file) {
       
             //draw the boxes
             drawBoxes(objects);
-            
+            //sendImageFromCanvas();
             //Send the next image
-            imageCtx.drawImage(v, 0, 0, v.videoWidth, v.videoHeight, 0, 0, uploadWidth, uploadWidth * (v.videoHeight / v.videoWidth));
+            imageCtx.drawImage(v, 0, 0, uploadWidth, uploadWidth);
             imageCanvas.toBlob(postFile, 'image/jpeg');
         }
         else{
@@ -92,10 +93,10 @@ function drawBoxes(object) {
     
     //filter out objects that contain a class_name and then draw boxes and labels on each
     
-    let x = object.x * drawCanvas.width;
-    let y = object.y * drawCanvas.height;
-    let width = (object.w ) + x;
-    let height = (object.h )+ y;
+    let x = (object.x) * imageCanvas.width;
+    let y = object.y * imageCanvas.height;
+    let width = (object.w * imageCanvas.width) + x;
+    let height = (object.h * imageCanvas.height)+ y;
     //flip the x axis if local video is mirrored
     if (mirror){
             x = drawCanvas.width - (x + width)
@@ -111,7 +112,7 @@ function sendImageFromCanvas() {
  
     imageCtx.drawImage(v, 0, 0, v.videoWidth, v.videoHeight, 0, 0, uploadWidth, uploadWidth * (v.videoHeight / v.videoWidth));
  
-    let imageChanged = imageChange(imageCtx, imageChangeThreshold);
+    let imageChanged = imageChange(imageCtx, 0.1);
     let enoughTime = (new Date() - lastFrameTime) > updateInterval;
  
     if (imageChanged && enoughTime) {

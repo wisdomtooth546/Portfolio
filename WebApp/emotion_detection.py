@@ -18,7 +18,7 @@ def default(obj):
 
 def get_objects(frame):
             frame = cv2.cvtColor(np.asarray(frame), cv2.COLOR_RGB2BGR)
-            scale_factor = frame.shape[1]
+            scale_factor = frame.shape[0]
             faces = face_Detection.detectMultiScale(frame,
                                          minNeighbors=5,
                                          minSize=(60, 60)
@@ -38,8 +38,8 @@ def get_objects(frame):
             for x,y,w,h in faces:
              item['x'] = x/scale_factor
              item['y'] = y/scale_factor
-             item['w'] = w/scale_factor
-             item['h'] = h/scale_factor
+             item['w'] = w/frame.shape[1]
+             item['h'] = h/frame.shape[1] 
             outputJSON = json.dumps(item, default=default)
             return outputJSON
             

@@ -56,6 +56,7 @@
     width: 100%;
     height: 100%;
     z-index: 1;
+    border:1px solid red;
 }
     
 
@@ -85,8 +86,9 @@
     <div class="col-sm-8 text-left"> 
       <h3>Requires camera access</h3>
       <h6>(Model would take a couple of seconds to load)</h6>
-      <div>
-      <video id="myVideo" height='640' width= '640' autoplay></video>
+      <div class="embed-responsive embed-responsive-16by9">
+        <canvas id = "myCanvas"></canvas>
+        <video class= "embed-responsive-item" id="myVideo" autoplay></video>
       </div>
     </div>
     <div class="col-sm-2 sidenav">
