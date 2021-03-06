@@ -3,8 +3,8 @@ import cv2, json
 import numpy as np
 
 #'./WebApp/essentials/haarcascade_frontalface_alt2.xml'
-model = tf.keras.models.load_model("G:\Portfolio\Website-Portfolio\Classic-Theme\WebApp\essentials\ResNet-50.h5")
-cascade_file = 'G:\Portfolio\Website-Portfolio\Classic-Theme\WebApp\essentials\haarcascade_frontalface_alt2.xml'
+model = tf.keras.models.load_model("./essentials/ResNet-50.h5")
+cascade_file = './essentials/haarcascade_frontalface_alt2.xml'
 face_Detection = cv2.CascadeClassifier(cascade_file)
 emotion_dict = {0:'Angry', 1:'Disgust', 2:'Fear', 3:'Happy', 4:'Sad', 5:'Surprise', 6:'Neutral'}
 
@@ -27,7 +27,8 @@ def get_objects(frame):
             input = tf.expand_dims(img,0)
             input-= 128.8006
             input /= 64.6497
-            output = model.predict(input)
+            output = model.predict(input, steps=1)
+            print(output)
             logit = tf.nn.softmax(output,axis=1)
             preds = np.argmax(logit ,1)
             
