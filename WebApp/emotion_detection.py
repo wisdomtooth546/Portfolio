@@ -1,9 +1,9 @@
 import tensorflow as tf
-import cv2, json
+import cv2, json, requests
 import numpy as np
 
 #'./WebApp/essentials/haarcascade_frontalface_alt2.xml'
-model = tf.keras.models.load_model("./essentials/ResNet-50.h5")
+model = 'http://localhost:9000/v1/models/EmotionClassifier:predict'
 cascade_file = './essentials/haarcascade_frontalface_alt2.xml'
 face_Detection = cv2.CascadeClassifier(cascade_file)
 emotion_dict = {0:'Angry', 1:'Disgust', 2:'Fear', 3:'Happy', 4:'Sad', 5:'Surprise', 6:'Neutral'}
@@ -27,15 +27,15 @@ def get_objects(frame):
             input = tf.expand_dims(img,0)
             input-= 128.8006
             input /= 64.6497
-            output = model.predict(input, steps=1)
-            print(output)
-            logit = tf.nn.softmax(output,axis=1)
-            preds = np.argmax(logit ,1)
+            payload = {
+                "instances": [{'input_1': input}]
+            }
+            output = requests.post(model, json=payload)
+            preds = np.argmax(json.loads(output.content.decode('utf-8')))
             
             item = dict()
             item['name'] = 'Output'
             item['class_name'] = emotion_dict[preds.item()]
-            item['score'] = np.max(logit ,1)
             for x,y,w,h in faces:
              item['x'] = x/scale_factor
              item['y'] = y/scale_factor
