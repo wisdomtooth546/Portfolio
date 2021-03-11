@@ -40,7 +40,7 @@
       .row.content {height:auto;} 
     }
     video {
-        position: relative;
+        position: absolute;
         top: 0;
         left: 0;
         z-index: -1;
@@ -86,8 +86,7 @@
     <div class="col-sm-8 text-left"> 
       <h3>Requires camera access</h3>
       <h6>(Model would take a couple of seconds to load)</h6>
-      <div class="embed-responsive embed-responsive-16by9">
-        <canvas id = "myCanvas"></canvas>
+      <div id="myCanvas" class="embed-responsive embed-responsive-16by9">
         <video class= "embed-responsive-item" id="myVideo" autoplay></video>
       </div>
     </div>

@@ -16,9 +16,9 @@ let imageCanvas = document.createElement('canvas');
 let imageCtx = imageCanvas.getContext("2d");
  
 //create a canvas for drawing object boundaries
-const drawCanvas = document.getElementById('myCanvas');
-//let drawCanvas = document.createElement('canvas');
-document.body.appendChild(drawCanvas);
+let drawCanvas = document.createElement('canvas');
+var div = document.getElementById('myCanvas');
+div.appendChild(drawCanvas);
 let drawCtx = drawCanvas.getContext("2d");
 
 v.onloadedmetadata = () => {
