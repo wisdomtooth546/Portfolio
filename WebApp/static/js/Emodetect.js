@@ -102,7 +102,7 @@ function drawBoxes(object) {
             x = drawCanvas.width - (x + width)
         }
     
-    drawCtx.fillText(object.class_name, x + 5, y + 20);
+    drawCtx.fillText(object.class_name+" - " + Math.round(object.score * 100, 1) + "%", x + 5, y + 20);
     drawCtx.strokeRect(x, y, width, height);
  
     
