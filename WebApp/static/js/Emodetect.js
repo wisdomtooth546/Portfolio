@@ -21,6 +21,7 @@ var div = document.getElementById('myCanvas');
 div.appendChild(drawCanvas);
 let drawCtx = drawCanvas.getContext("2d");
 
+
 v.onloadedmetadata = () => {
     console.log("video metadata ready");
     gotMetadata = true;
@@ -31,6 +32,7 @@ v.onloadedmetadata = () => {
 //see if the video has started playing
 v.onplaying = () => {
     console.log("video playing");
+    console.log("height of the div is ",div.height);
     isPlaying = true;
     if (gotMetadata) {
         startObjectDetection();
@@ -50,9 +52,9 @@ function startObjectDetection() {
  
     //Some styles for the drawcanvas
     drawCtx.lineWidth = "4";
-    drawCtx.strokeStyle = "cyan";
+    drawCtx.strokeStyle = "blue";
     drawCtx.font = "20px Verdana";
-    drawCtx.fillStyle = "yellow";
+    drawCtx.fillStyle = "green";
     imageCtx.drawImage(v, 0, 0, uploadWidth * (v.videoHeight / v.videoWidth), uploadWidth * (v.videoHeight / v.videoWidth));
     imageCanvas.toBlob(postFile, 'image/jpeg');
    
@@ -93,10 +95,10 @@ function drawBoxes(object) {
     
     //filter out objects that contain a class_name and then draw boxes and labels on each
     
-    let x = (object.x) * imageCanvas.width;
-    let y = object.y * imageCanvas.height;
-    let width = (object.w * imageCanvas.width) + x;
-    let height = (object.h * imageCanvas.height)+ y;
+    let x = (object.x);
+    let y = object.y ;
+    let width = (object.w);
+    let height = (object.h);
     //flip the x axis if local video is mirrored
     if (mirror){
             x = drawCanvas.width - (x + width)
