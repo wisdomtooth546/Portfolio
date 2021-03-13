@@ -18,7 +18,6 @@ let imageCtx = imageCanvas.getContext("2d");
 //create a canvas for drawing object boundaries
 let drawCanvas = document.createElement('canvas');
 var div = document.getElementById('myCanvas');
-div.appendChild(imageCanvas);
 div.appendChild(drawCanvas);
 
 v.onloadedmetadata = () => {
