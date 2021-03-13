@@ -40,7 +40,8 @@ def get_objects(frame):
             item = dict()
             item['name'] = 'Output'
             item['class_name'] = emotion_dict[np.argmax(prediction)]
-            item['score'] = np.max(tf.nn.softmax(prediction))
+            CL = np.max(tf.nn.softmax(prediction))
+            item['score'] = CL.numpy()
             for x,y,w,h in faces:
              item['x'] = x/scale_factor
              item['y'] = y/scale_factor
