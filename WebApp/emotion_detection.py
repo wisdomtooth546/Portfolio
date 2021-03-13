@@ -41,11 +41,14 @@ def get_objects(frame):
             item['name'] = 'Output'
             item['class_name'] = emotion_dict[np.argmax(prediction)]
             CL = np.max(tf.nn.softmax(prediction))
+            item['score'] = CL
             for x,y,w,h in faces:
              item['x'] = x/scale_factor
              item['y'] = y/scale_factor
              item['w'] = w/frame.shape[1]
-             item['h'] = h/frame.shape[1] 
+             item['h'] = h/frame.shape[1]
+            for key, values in item.items():
+                print(key, type(values))
             outputJSON = json.dumps(item, default=default)
             return outputJSON
             
