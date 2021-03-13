@@ -1,7 +1,7 @@
 const s = document.getElementById('EmoDetection');
 const sourceVideo = s.getAttribute("data-source");  //the source video to use
 const uploadWidth = s.getAttribute("data-uploadWidth") || 480; //the width of the upload file
-const mirror = s.getAttribute("data-mirror") || false; //mirror the boundary boxes
+const mirror = s.getAttribute("data-mirror"); //mirror the boundary boxes
 
 v = document.getElementById(sourceVideo);
  
@@ -18,7 +18,9 @@ let imageCtx = imageCanvas.getContext("2d");
 //create a canvas for drawing object boundaries
 let drawCanvas = document.createElement('canvas');
 var div = document.getElementById('myCanvas');
+div.appendChild(imageCanvas);
 div.appendChild(drawCanvas);
+
 let drawCtx = drawCanvas.getContext("2d");
 
 
@@ -100,7 +102,7 @@ function drawBoxes(object) {
     let width = (object.w);
     let height = (object.h);
     //flip the x axis if local video is mirrored
-    if (mirror){
+    if (false){
             x = drawCanvas.width - (x + width)
         }
     //+ Math.round(object.score * 100, 1) + "%"
