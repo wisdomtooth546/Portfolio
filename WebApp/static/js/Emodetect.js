@@ -21,8 +21,11 @@ var div = document.getElementById('myCanvas');
 div.appendChild(imageCanvas);
 div.appendChild(drawCanvas);
 
+<<<<<<< HEAD
 let drawCtx = drawCanvas.getContext("2d");
 
+=======
+>>>>>>> parent of 4004aad... Temp fix to bounding box
 v.onloadedmetadata = () => {
     console.log("video metadata ready");
     gotMetadata = true;
