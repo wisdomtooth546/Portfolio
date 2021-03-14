@@ -20,6 +20,7 @@ let drawCanvas = document.createElement('canvas');
 var div = document.getElementById('myCanvas');
 div.appendChild(drawCanvas);
 
+let drawCtx = drawCanvas.getContext("2d");
 v.onloadedmetadata = () => {
     console.log("video metadata ready");
     gotMetadata = true;
