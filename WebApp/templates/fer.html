@@ -67,6 +67,12 @@
     height: 100%;
     z-index: 1;
     border:1px solid red;
+    }
+    
+    .brand-logo img{
+    width: 30%;
+    height:30%;
+    object-fit: cover;
 }
     
 
@@ -79,8 +85,7 @@
   <div class="container-fluid">
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#"><h4>Facial Emotion Recognition</h4></a></li>
-        
+        <li class="brand-logo"><a href="/"><img src="images/logo.png" alt="" /></a></li>
       </ul>
     </div>
   </div>
@@ -94,8 +99,8 @@
       </div>
     </div>
     <div class="col-sm-8 text-left"> 
-      <h3>Requires camera access</h3>
-      <h6>(Model would take a couple of seconds to load)</h6>
+      <h2>Facial Emotion Recognition</h2>
+      <h5>The model architecture is based on ResNet-50 and is capable of classifying among Anger, Happiness, Sadness, Surprise, Disgust, Fear and Neutral emotions.</h5>
       <div id="myCanvas" class="embed-responsive embed-responsive-16by9">
         <video class= "embed-responsive-item" id="myVideo" autoplay></video>
       </div>
