@@ -50,9 +50,9 @@ function startObjectDetection() {
  
     //Some styles for the drawcanvas
     drawCtx.lineWidth = "4";
-    drawCtx.strokeStyle = "cyan";
+    drawCtx.strokeStyle = "blue";
     drawCtx.font = "20px Verdana";
-    drawCtx.fillStyle = "yellow";
+    drawCtx.fillStyle = "green";
     imageCtx.drawImage(v, 0, 0, uploadWidth * (v.videoHeight / v.videoWidth), uploadWidth * (v.videoHeight / v.videoWidth));
     imageCanvas.toBlob(postFile, 'image/jpeg');
    
