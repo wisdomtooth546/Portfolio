@@ -267,8 +267,7 @@ nav ul li {
     font-weight: bold;
 }
 .brand-logo img{
-    width:auto;
-    height:auto;
+    width:50%;
     margin-top: 2%;
 }
 
