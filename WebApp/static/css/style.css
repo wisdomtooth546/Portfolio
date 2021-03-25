@@ -235,7 +235,7 @@ textarea.form-control:focus:not([readonly]) {
     width: 15%;
     margin-left: 10%;
     padding: 5px;
-    margin-top: 20px;
+    margin-top: 10px;
     margin-bottom: 20px;
 }
 .cd-header{
@@ -267,7 +267,7 @@ nav ul li {
     font-weight: bold;
 }
 .brand-logo img{
-    width:50%;
+    width:50px;
     margin-top: 2%;
 }
 

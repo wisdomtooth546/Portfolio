@@ -673,7 +673,7 @@ mark,
 .img-fluid, .carousel-inner > .carousel-item > img,
 .carousel-inner > .carousel-item > a > img {
   display: block;
-  max-width: 100%;
+  max-width: 60%;
   height: auto;
 }
 

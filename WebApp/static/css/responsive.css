@@ -50,7 +50,7 @@ Author URI: http://www.Xpeedstudio.com
         font-size: 90%;
     }
     .cd-header a.brand-logo img {
-        width: 10%;
+        width: max-content;
     }
     #main-nav li a{
         padding: 2% 10%;
@@ -74,7 +74,7 @@ Author URI: http://www.Xpeedstudio.com
     }
 
     .main_footer .footer_logo a img {
-        width: 20%;
+        width: 40%;
     }
 
 }
