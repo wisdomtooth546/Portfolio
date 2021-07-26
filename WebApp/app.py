@@ -4,7 +4,7 @@ import emotion_detection
 import time
 from PIL import Image
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path=' ', static_folder='static')
 
 
 
@@ -13,9 +13,9 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-@app.route('/emotion-recognition')
+@app.route('/FER')
 def FER():
-    return render_template('Live-model.html')
+    return render_template('fer.html')
 
 @app.route('/image', methods=['POST'])
 def image():
