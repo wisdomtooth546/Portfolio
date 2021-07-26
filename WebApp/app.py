@@ -4,7 +4,7 @@ import emotion_detection
 import time
 from PIL import Image
 
-app = Flask(__name__, static_url_path='', static_folder='static')
+app = Flask(__name__)
 
 
 
@@ -39,4 +39,4 @@ def after_request(response):
     return response
 
 if __name__ == "__main__":
-    app.run(host = '0.0.0.0', debug=True)
+    app.run(host = '0.0.0.0')
