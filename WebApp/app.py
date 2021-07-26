@@ -13,9 +13,9 @@ app = Flask(__name__, static_url_path='', static_folder='static')
 def home():
     return render_template('index.html')
 
-@app.route('/FER')
+@app.route('/emotion-recognition')
 def FER():
-    return render_template('fer.html')
+    return render_template('Live-model.html')
 
 @app.route('/image', methods=['POST'])
 def image():
@@ -39,4 +39,4 @@ def after_request(response):
     return response
 
 if __name__ == "__main__":
-    app.run(host = '0.0.0.0')
+    app.run(host = '0.0.0.0', debug=True)
