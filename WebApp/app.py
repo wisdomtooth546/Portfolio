@@ -4,7 +4,7 @@ import emotion_detection
 import time
 from PIL import Image
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__, static_url_path='', static_folder='static')
 
 
 
