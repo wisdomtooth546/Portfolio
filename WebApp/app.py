@@ -17,6 +17,10 @@ def home():
 def FER():
     return render_template('Live-model.html')
 
+@app.route('/covid19-Dashboard')
+def COVID():
+    return render_template('Tableau-Public.html')
+
 @app.route('/image', methods=['POST'])
 def image():
     try:
