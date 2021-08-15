@@ -19,7 +19,11 @@ def FER():
 
 @app.route('/covid19-Dashboard')
 def COVID():
-    return render_template('Tableau-Public.html')
+    return render_template('Tableau-vic-dashboard.html')
+
+@app.route('/covid19-RaceChart')
+def COVID_Race():
+    return render_template('Tableau-race-charts.html')
 
 @app.route('/image', methods=['POST'])
 def image():
@@ -44,3 +48,4 @@ def after_request(response):
 
 if __name__ == "__main__":
     app.run(host = '0.0.0.0')
+
