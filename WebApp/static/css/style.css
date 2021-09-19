@@ -31,16 +31,58 @@ h1, h2, h3, h4, h5, h6 {
 /*--------------------------------------------------------------
 # User Defined
 --------------------------------------------------------------*/
-.my-buttons {
+
+.btn {
   border: none;
-  color: white;
-  padding: 12px 35px;
+  display: block;
   text-align: center;
-  display: inline-block;
-  font-size: 16px;
-  transition-duration: 0.4s;
-  background-color: #149ddd; 
+  cursor: pointer;
+  text-transform: uppercase;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
   border-radius: 30px;
+  background-color: #222;
+  padding: 17px 60px;
+  margin: 0 auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.20);
+}
+
+.btn span {
+  position: relative; 
+  z-index: 1;
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 490%;
+  width: 140%;
+  background: #149ddd;
+  -webkit-transition: all .5s ease-in-out;
+  transition: all .5s ease-in-out;
+  -webkit-transform: translateX(-98%) translateY(-25%) rotate(45deg);
+  transform: translateX(-98%) translateY(-25%) rotate(45deg);
+}
+
+.btn:hover:after {
+  -webkit-transform: translateX(-9%) translateY(-25%) rotate(45deg);
+  transform: translateX(-9%) translateY(-25%) rotate(45deg);
+}
+
+.link {
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.link a {
+  color: #000;
+  font-size: 25px; 
 }
 
 
